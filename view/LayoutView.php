@@ -1,9 +1,10 @@
 <?php
 
+namespace View;
 
 class LayoutView {
-  
-  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv) {
+
+  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv, SignupView $sv) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -23,13 +24,14 @@ class LayoutView {
       </html>
     ';
   }
-  
+
   private function renderIsLoggedIn($isLoggedIn) {
     if ($isLoggedIn) {
       return '<h2>Logged in</h2>';
     }
     else {
-      return '<h2>Not logged in</h2>';
+      return '<h2>Not logged in</h2>
+               <a href="SignupView.php">Sign Up!</a>';
     }
   }
 }
