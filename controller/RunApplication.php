@@ -13,6 +13,8 @@ use \View\DateTimeView as DateTimeView;
 use \View\LayoutView as LayoutView;
 use \View\SignupView as SignupView;
 use \Model\Session as Session;
+use \Model\UserDatabase as UserDatabase;
+use \Controller\RegisterController as RegisterController;
 
 class RunApplication
 {
@@ -21,6 +23,9 @@ class RunApplication
     private $dateTimeView;
     private $layoutView;
     private $signupView;
+    private $newSession;
+    private $userDatabase;
+    private $registerController;
 
     public function __construct()
     {
@@ -28,12 +33,16 @@ class RunApplication
         $this->dateTimeView = new DateTimeView();
         $this->layoutView = new LayoutView();
         $this->signupView = new SignupView();
+        $this->newSession = new Session();
+        $this->registerController = new RegisterController();
+        $this->userDatabase = new UserDatabase();
     }
 
     public function run()
     {
-        $newSession = new Session();
-        $newSession->startSession();
+        $this->newSession->startSession();
+        $this->userDatabase->run();
+        $this->registerController->run($this->userDatabase);
 
         var_dump($_SESSION);
 

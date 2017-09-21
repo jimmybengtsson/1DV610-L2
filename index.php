@@ -8,7 +8,7 @@ require_once('view/LayoutView.php');
 require_once('view/SignupView.php');
 require_once('model/Session.php');
 require_once('model/SQLUsers.php');
-
+require_once('controller/RegisterController.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
 error_reporting(E_ALL);

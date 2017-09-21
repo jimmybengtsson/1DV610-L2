@@ -10,13 +10,17 @@ namespace Model;
 
 class UserDatabase
 {
+    private $dbServerName = 'localhost';
+    private $dbUserName = 'root';
+    private $dbPassword = 'root';
+    private $dbName = 'users';
+
     public function run() {
 
-        $dbServerName = 'localhost';
-        $dbUserName = 'root';
-        $dbPassword = '';
-        $dbName = 'users';
+        return mysqli_connect($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
+    }
 
-        return mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+    public function addNewUser($registerPost) {
+        var_dump($registerPost);
     }
 }

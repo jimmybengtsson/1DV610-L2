@@ -11,12 +11,12 @@ namespace View;
 class SignupView
 {
 
-    private static $register = 'SignupView::Register';
-    private static $name = 'LoginView::UserName';
-    private static $password = 'LoginView::Password';
-    private static $cookieName = 'LoginView::CookieName';
-    private static $cookiePassword = 'LoginView::CookiePassword';
-    private static $messageId = 'LoginView::Message';
+    private static $register = 'RegisterForm';
+    private static $name = 'SignupView::UserName';
+    private static $password = 'SignupView::Password';
+    private static $cookieName = 'SignupView::CookieName';
+    private static $cookiePassword = 'SignupView::CookiePassword';
+    private static $messageId = 'SignupView::Message';
 
     public function response()
     {
@@ -31,7 +31,7 @@ class SignupView
         return '
 			<form method="post"> 
 				<fieldset>
-					<legend>Register a new user - Write username and password</legend>
+					<legend>Register a new user - enter Username and password</legend>
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
