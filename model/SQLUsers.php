@@ -6,9 +6,17 @@
  * Time: 12:52
  */
 
-$dbServerName = 'localhost';
-$dbUserName = 'root';
-$dbPassword = '';
-$dbName = 'users';
+namespace Model;
 
-$connectToDb = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+class UserDatabase
+{
+    public function run() {
+
+        $dbServerName = 'localhost';
+        $dbUserName = 'root';
+        $dbPassword = '';
+        $dbName = 'users';
+
+        return mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
+    }
+}

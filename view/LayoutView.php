@@ -4,7 +4,10 @@ namespace View;
 
 class LayoutView {
 
-  public function render($isLoggedIn, LoginView $v, DateTimeView $dtv, SignupView $sv) {
+    private static $register = 'Register';
+    private static $backToIndex = 'BackToIndex';
+
+  public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView) {
     echo '<!DOCTYPE html>
       <html>
         <head>
@@ -16,9 +19,9 @@ class LayoutView {
           ' . $this->renderIsLoggedIn($isLoggedIn) . '
           
           <div class="container">
-              ' . $v->response() . '
+              ' . $loginView->response() . '
               
-              ' . $dtv->show() . '
+              ' . $dateTimeView->show() . '
           </div>
          </body>
       </html>
@@ -30,8 +33,31 @@ class LayoutView {
       return '<h2>Logged in</h2>';
     }
     else {
-      return '<h2>Not logged in</h2>
-               <a href="SignupView.php">Sign Up!</a>';
+      return $this->registerOrBackButton() . '<h2>Not logged in</h2>';
     }
+  }
+
+  private function registerOrBackButton() {
+      if ($_SESSION['registerPage']) {
+          return $this->generateBackToIndexButton();
+      }
+
+      return $this->generateRegisterButton();
+  }
+
+  private function generateRegisterButton() {
+      return '
+			<form  method="post" >
+				<input type="submit" name="' . self::$register . '" value="Register a new user"/>
+			</form>
+		';
+  }
+
+  private function generateBackToIndexButton() {
+      return '
+			<form  method="post" >
+				<input type="submit" name="' . self::$backToIndex . '" value="Back to login"/>
+			</form>
+		';
   }
 }
