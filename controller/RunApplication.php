@@ -50,6 +50,7 @@ class RunApplication
         $this->loginController->run($this->userDatabase);
 
         $this->checkIfLoggedIn();
+        $this->checkGoBackToIndex();
 
         if ($this->checkIfRegisterClick()) {
 
@@ -73,6 +74,15 @@ class RunApplication
 
         $_SESSION['registerPage'] = false;
         return false;
+    }
+
+    private function checkGoBackToIndex() {
+
+        if(isset($_GET['']))
+        {
+            $_SESSION['registerPage'] = false;
+            return false;
+        }
     }
 
     private function checkIfLoggedIn() {

@@ -11,12 +11,12 @@ namespace View;
 class SignupView
 {
 
-    private static $register = 'RegisterForm';
-    private static $name = 'SignupView::UserName';
-    private static $password = 'SignupView::Password';
-    private static $cookieName = 'SignupView::CookieName';
-    private static $cookiePassword = 'SignupView::CookiePassword';
-    private static $messageId = 'SignupView::Message';
+    private static $register = 'RegisterView::RegisterForm';
+    private static $name = 'RegisterView::UserName';
+    private static $password = 'RegisterView::Password';
+    private static $cookieName = 'RegisterView::CookieName';
+    private static $cookiePassword = 'RegisterView::CookiePassword';
+    private static $messageId = 'RegisterView::Message';
 
     public function response()
     {

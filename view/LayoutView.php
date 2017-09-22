@@ -50,10 +50,6 @@ class LayoutView {
   }
 
   private function generateBackToIndexButton() {
-      return '
-			<form  method="post" >
-				<input type="submit" name="' . self::$backToIndex . '" value="Back to login"/>
-			</form>
-		';
+      return '<a href="?">Back to login</a>';
   }
 }
