@@ -2,6 +2,8 @@
 
 namespace View;
 
+use Controller\LoginController;
+
 class LoginView {
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
@@ -12,21 +14,29 @@ class LoginView {
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
 
+	private $loginController;
 
 
-	/**
+	public function __construct()
+    {
+        $this->loginController = new LoginController();
+    }
+
+    /**
 	 * Create HTTP response
 	 *
 	 * Should be called after a login attempt has been determined
 	 *
 	 * @return  void BUT writes to standard output and cookies!
 	 */
-	public function response() {
+	public function response($isLoggedIn) {
 		$message = '';
 
-		$response = $this->generateLoginFormHTML($message);
-		//$response .= $this->generateLogoutButtonHTML($message);
-		return $response;
+        if ($isLoggedIn) {
+            return $this->generateLogoutButtonHTML($message);
+        } else {
+            return $this->generateLoginFormHTML($message);
+        }
 	}
 
 	/**
@@ -35,6 +45,9 @@ class LoginView {
 	* @return  void, BUT writes to standard output!
 	*/
 	private function generateLogoutButtonHTML($message) {
+
+	    $this->loginController->userLogout();
+
 		return '
 			<form  method="post" >
 				<p id="' . self::$messageId . '">' . $message .'</p>
@@ -75,27 +88,6 @@ class LoginView {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
 
-    public function generateSignupForm()
-    {
-        return '
-			<form method="post" action=\'?register\'> 
-				<fieldset>
-					<legend>Register a new user - Write username and password</legend>
-					<p id="' . self::$messageId . '">' . $message . '</p>
-					
-					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
 
-					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
-
-					<label for="' . self::$keep . '">Keep me logged in  :</label>
-					<input type="checkbox" id="' . self::$keep . '" name="' . self::$keep . '" />
-					
-					<input type="submit" name="' . self::$login . '" value="login" />
-				</fieldset>
-			</form>
-		';
-    }
 
 }

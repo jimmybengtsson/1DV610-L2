@@ -15,6 +15,7 @@ use \View\SignupView as SignupView;
 use \Model\Session as Session;
 use \Model\UserDatabase as UserDatabase;
 use \Controller\RegisterController as RegisterController;
+use \Controller\LoginController as LoginController;
 
 class RunApplication
 {
@@ -26,6 +27,7 @@ class RunApplication
     private $newSession;
     private $userDatabase;
     private $registerController;
+    private $isLoggedIn;
 
     public function __construct()
     {
@@ -36,23 +38,25 @@ class RunApplication
         $this->newSession = new Session();
         $this->registerController = new RegisterController();
         $this->userDatabase = new UserDatabase();
+
     }
 
     public function run()
     {
         $this->newSession->startSession();
-        $this->userDatabase->run();
         $this->registerController->run($this->userDatabase);
+
+        $this->checkIfLoggedIn();
 
         var_dump($_SESSION);
 
         if ($this->checkIRegisterClick()) {
 
-            $this->layoutView->render(false, $this->signupView, $this->dateTimeView);
+            $this->layoutView->render($this->isLoggedIn, $this->signupView, $this->dateTimeView);
 
         } else {
 
-            $this->layoutView->render(false, $this->loginView, $this->dateTimeView);
+            $this->layoutView->render($this->isLoggedIn, $this->loginView, $this->dateTimeView);
 
         }
     }
@@ -68,6 +72,15 @@ class RunApplication
 
         $_SESSION['registerPage'] = false;
         return false;
+    }
+
+    private function checkIfLoggedIn() {
+
+        if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true) {
+            $this->isLoggedIn = true;
+        } else {
+            $this->isLoggedIn = false;
+        }
     }
 
 }
