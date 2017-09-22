@@ -9,11 +9,17 @@
 namespace Controller;
 
 
+use Model\UserDatabase;
+
 class LoginController
 {
 
-    public function __construct()
-    {
+    private $database;
+
+    public function run(UserDatabase $userDatabase) {
+
+        $this->database= $userDatabase;
+
         if (isset($_POST['LoginView::Login'])) {
             $this->userLogin();
         }
@@ -25,6 +31,9 @@ class LoginController
 
     public function userLogin() {
 
+
+
+        $this->database->handleLogin();
 
     }
 

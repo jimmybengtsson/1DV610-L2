@@ -35,6 +35,7 @@ class UserDatabase
         $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['SignupView::UserName']);
         $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['SignupView::Password']);
 
+        // TODO Check for errors
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -45,6 +46,40 @@ class UserDatabase
         return mysqli_query($this->connectToDatabase, $sql);
 
 
+
+    }
+
+    public function handleLogin() {
+
+        $username = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']);
+        $password = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::Password']);
+
+        // TODO Check for errors
+
+        $sql = "SELECT * FROM users WHERE user_uid='$username'";
+        $result = mysqli_query($this->connectToDatabase, $sql);
+        $validateResult = mysqli_num_rows($result);
+
+        if ($validateResult < 1) {
+            //Todo Change error handling
+            throw new \Exception('Wrong username');
+
+        } else {
+
+            if ($row = mysqli_fetch_assoc($result)) {
+
+                $validatePassword = password_verify($password, $row['user_password']);
+
+                if ($validatePassword == false) {
+                    //Todo Change error handling
+                    throw new \Exception('Wrong password');
+
+                } elseif ($validatePassword == true) {
+                    // Todo Login the user
+                    $_SESSION['isLoggedIn'] = true;
+                }
+            }
+        }
 
     }
 }

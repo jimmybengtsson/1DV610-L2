@@ -27,6 +27,7 @@ class RunApplication
     private $newSession;
     private $userDatabase;
     private $registerController;
+    private $loginController;
     private $isLoggedIn;
 
     public function __construct()
@@ -38,6 +39,7 @@ class RunApplication
         $this->newSession = new Session();
         $this->registerController = new RegisterController();
         $this->userDatabase = new UserDatabase();
+        $this->loginController = new LoginController();
 
     }
 
@@ -45,6 +47,7 @@ class RunApplication
     {
         $this->newSession->startSession();
         $this->registerController->run($this->userDatabase);
+        $this->loginController->run($this->userDatabase);
 
         $this->checkIfLoggedIn();
 
