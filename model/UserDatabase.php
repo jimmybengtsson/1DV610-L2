@@ -42,9 +42,10 @@ class UserDatabase
         $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
 
         $_SESSION['isLoggedIn'] = true;
+        $_SESSION['registerPage'] = false;
+        mysqli_query($this->connectToDatabase, $sql);
 
-        return mysqli_query($this->connectToDatabase, $sql);
-
+        return header('Location: /');
 
 
     }
