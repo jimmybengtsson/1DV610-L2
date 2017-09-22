@@ -32,8 +32,8 @@ class UserDatabase
 
     public function addNewUser($registerPost) {
 
-        $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['SignupView::UserName']);
-        $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['SignupView::Password']);
+        $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']);
+        $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
 
         // TODO Check for errors
 
