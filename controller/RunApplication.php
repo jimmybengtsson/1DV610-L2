@@ -51,7 +51,7 @@ class RunApplication
 
         $this->checkIfLoggedIn();
 
-        if ($this->checkIRegisterClick()) {
+        if ($this->checkIfRegisterClick()) {
 
             $this->layoutView->render($this->isLoggedIn, $this->signupView, $this->dateTimeView);
 
@@ -62,10 +62,10 @@ class RunApplication
         }
     }
 
-    private function checkIRegisterClick()
+    private function checkIfRegisterClick()
     {
 
-        if(isset($_POST['Register']))
+        if(isset($_GET['register']))
         {
             $_SESSION['registerPage'] = true;
             return true;

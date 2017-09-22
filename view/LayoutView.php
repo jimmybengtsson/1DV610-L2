@@ -46,11 +46,7 @@ class LayoutView {
   }
 
   private function generateRegisterButton() {
-      return '
-			<form  method="post" >
-				<input type="submit" name="' . self::$register . '" value="Register a new user"/>
-			</form>
-		';
+      return '<a href="?register">Register a new user</a>';
   }
 
   private function generateBackToIndexButton() {
