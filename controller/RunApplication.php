@@ -51,8 +51,6 @@ class RunApplication
 
         $this->checkIfLoggedIn();
 
-        var_dump($_SESSION);
-
         if ($this->checkIRegisterClick()) {
 
             $this->layoutView->render($this->isLoggedIn, $this->signupView, $this->dateTimeView);
