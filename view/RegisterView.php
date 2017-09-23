@@ -8,12 +8,13 @@
 
 namespace View;
 
-class SignupView
+class RegisterView
 {
 
     private static $register = 'RegisterView::RegisterForm';
     private static $name = 'RegisterView::UserName';
     private static $password = 'RegisterView::Password';
+    private static $passwordRepeat = 'RegisterView::PasswordRepeat';
     private static $cookieName = 'RegisterView::CookieName';
     private static $cookiePassword = 'RegisterView::CookiePassword';
     private static $messageId = 'RegisterView::Message';
@@ -31,7 +32,7 @@ class SignupView
         return '
 			<form method="post"> 
 				<fieldset>
-					<legend>Register a new user - enter Username and password</legend>
+					<legend>Register a new user - Write username and password</legend>
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
@@ -40,7 +41,10 @@ class SignupView
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
 					
-					<input type="submit" name="' . self::$register . '" value="register" />
+					<label for="' . self::$passwordRepeat . '">Repeat password :</label>
+					<input type="password" id="' . self::$passwordRepeat . '" name="' . self::$passwordRepeat . '" />
+					
+					<input type="submit" name="' . self::$register . '" value="Register" />
 				</fieldset>
 			</form>
 		';

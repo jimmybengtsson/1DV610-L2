@@ -11,8 +11,9 @@ namespace Controller;
 use \View\LoginView as LoginView;
 use \View\DateTimeView as DateTimeView;
 use \View\LayoutView as LayoutView;
-use \View\SignupView as SignupView;
+use \View\RegisterView as RegisterView;
 use \Model\Session as Session;
+use \Model\Errors as Errors;
 use \Model\UserDatabase as UserDatabase;
 use \Controller\RegisterController as RegisterController;
 use \Controller\LoginController as LoginController;
@@ -23,7 +24,7 @@ class RunApplication
     private $loginView;
     private $dateTimeView;
     private $layoutView;
-    private $signupView;
+    private $registerView;
     private $newSession;
     private $userDatabase;
     private $registerController;
@@ -35,7 +36,7 @@ class RunApplication
         $this->loginView = new LoginView();
         $this->dateTimeView = new DateTimeView();
         $this->layoutView = new LayoutView();
-        $this->signupView = new SignupView();
+        $this->registerView = new RegisterView();
         $this->newSession = new Session();
         $this->registerController = new RegisterController();
         $this->userDatabase = new UserDatabase();
@@ -45,7 +46,11 @@ class RunApplication
 
     public function run()
     {
-        $this->newSession->startSession();
+
+        if (!isset($_SESSION)) {
+            $this->newSession->startSession();
+        }
+
         $this->registerController->run($this->userDatabase);
         $this->loginController->run($this->userDatabase);
 
@@ -54,7 +59,7 @@ class RunApplication
 
         if ($this->checkIfRegisterClick()) {
 
-            $this->layoutView->render($this->isLoggedIn, $this->signupView, $this->dateTimeView);
+            $this->layoutView->render($this->isLoggedIn, $this->registerView, $this->dateTimeView);
 
         } else {
 

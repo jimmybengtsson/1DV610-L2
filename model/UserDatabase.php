@@ -9,6 +9,9 @@
 namespace Model;
 
 use \Config\DatabaseConfig as DatabaseConfig;
+use View\DateTimeView;
+use View\LayoutView;
+use View\LoginView;
 
 class UserDatabase
 {
@@ -34,6 +37,7 @@ class UserDatabase
 
         $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']);
         $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
+        $passwordRepeat = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::PasswordRepeat']);
 
         // TODO Check for errors
 
@@ -55,32 +59,47 @@ class UserDatabase
         $username = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']);
         $password = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::Password']);
 
+        $errors = new Errors();
+
         // TODO Check for errors
 
-        $sql = "SELECT * FROM users WHERE user_uid='$username'";
-        $result = mysqli_query($this->connectToDatabase, $sql);
-        $validateResult = mysqli_num_rows($result);
+        $checkUsername = $errors->checkLoginUsername($username);
+        $checkPassword = $errors->checkLoginPassword($password);
 
-        if ($validateResult < 1) {
-            //Todo Change error handling
-            throw new \Exception('Wrong username');
+        if (strlen($checkUsername) > 0) {
 
-        } else {
+            $_SESSION['Message'] = $checkUsername;
 
-            if ($row = mysqli_fetch_assoc($result)) {
+        } elseif (strlen($checkPassword) > 0) {
 
-                $validatePassword = password_verify($password, $row['user_password']);
+            $_SESSION['Message'] = $checkPassword;
 
-                if ($validatePassword == false) {
-                    //Todo Change error handling
-                    throw new \Exception('Wrong password');
+        }  else {
 
-                } elseif ($validatePassword == true) {
-                    // Todo Login the user
-                    $_SESSION['isLoggedIn'] = true;
+            $sql = "SELECT * FROM users WHERE user_uid='$username'";
+            $result = mysqli_query($this->connectToDatabase, $sql);
+            $validateResult = mysqli_num_rows($result);
+
+            if ($validateResult < 1) {
+                //Todo Change error handling
+                throw new \Exception('Wrong username');
+
+            } else {
+
+                if ($row = mysqli_fetch_assoc($result)) {
+
+                    $validatePassword = password_verify($password, $row['user_password']);
+
+                    if ($validatePassword == false) {
+                        //Todo Change error handling
+                        throw new \Exception('Wrong password');
+
+                    } elseif ($validatePassword == true) {
+                        // Todo Login the user
+                        $_SESSION['isLoggedIn'] = true;
+                    }
                 }
             }
         }
-
     }
 }
