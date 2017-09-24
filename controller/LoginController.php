@@ -40,6 +40,7 @@ class LoginController
     public function userLogout() {
 
             $_SESSION['isLoggedIn'] = false;
+            $_SESSION['Message'] = 'Bye bye!';
 
     }
 
