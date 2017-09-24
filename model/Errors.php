@@ -28,7 +28,7 @@ class Errors
         return $this->isPasswordSet($password);
     }
 
-    private function isUserNameSet($username) {
+    public function isUserNameSet($username) {
 
         if (strlen($username) == 0) {
 
@@ -39,7 +39,7 @@ class Errors
         }
     }
 
-    private function isPasswordSet($password) {
+    public function isPasswordSet($password) {
 
         if (strlen($password) == 0) {
 
@@ -49,5 +49,33 @@ class Errors
             return '';
         }
 
+    }
+
+    public function compareUidAndPwdWithDatabase($username, $password, $connect)
+    {
+
+        $sql = "SELECT * FROM users WHERE user_uid='$username'";
+        $result = mysqli_query($connect, $sql);
+        $validateResult = mysqli_num_rows($result);
+
+        if ($validateResult < 1) {
+            return 'Wrong name or password';
+
+        } else {
+
+            if ($row = mysqli_fetch_assoc($result)) {
+
+                $validatePassword = password_verify($password, $row['user_password']);
+
+                if ($validatePassword == false) {
+
+                    return 'Wrong name or password';
+
+                }
+
+            }
+        }
+
+        return '';
     }
 }

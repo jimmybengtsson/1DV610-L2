@@ -66,40 +66,22 @@ class UserDatabase
         $checkUsername = $errors->checkLoginUsername($username);
         $checkPassword = $errors->checkLoginPassword($password);
 
-        if (strlen($checkUsername) > 0) {
+        if (strlen($errors->isUserNameSet($username)) > 0) {
 
-            $_SESSION['Message'] = $checkUsername;
+            $_SESSION['Message'] = $errors->isUserNameSet($username);
 
-        } elseif (strlen($checkPassword) > 0) {
+        } elseif (strlen($errors->isPasswordSet($password)) > 0) {
 
-            $_SESSION['Message'] = $checkPassword;
+            $_SESSION['Message'] = $errors->isPasswordSet($password);
 
-        }  else {
+        } elseif (strlen($errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase)) > 0) {
 
-            $sql = "SELECT * FROM users WHERE user_uid='$username'";
-            $result = mysqli_query($this->connectToDatabase, $sql);
-            $validateResult = mysqli_num_rows($result);
+            $_SESSION['Message'] = $errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase);
 
-            if ($validateResult < 1) {
-                //Todo Change error handling
-                throw new \Exception('Wrong username');
+        } else {
 
-            } else {
-
-                if ($row = mysqli_fetch_assoc($result)) {
-
-                    $validatePassword = password_verify($password, $row['user_password']);
-
-                    if ($validatePassword == false) {
-                        //Todo Change error handling
-                        throw new \Exception('Wrong password');
-
-                    } elseif ($validatePassword == true) {
-                        // Todo Login the user
-                        $_SESSION['isLoggedIn'] = true;
-                    }
-                }
-            }
+            $_SESSION['isLoggedIn'] = true;
+            $_SESSION['Message'] = 'Welcome';
         }
     }
 }
