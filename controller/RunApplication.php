@@ -47,23 +47,22 @@ class RunApplication
     public function run()
     {
 
-        if (!isset($_SESSION)) {
+        if (session_status() != PHP_SESSION_ACTIVE) {
             $this->newSession->startSession();
         }
 
         $this->registerController->run($this->userDatabase);
         $this->loginController->run($this->userDatabase);
 
-        $this->checkIfLoggedIn();
         $this->checkGoBackToIndex();
 
         if ($this->checkIfRegisterClick()) {
 
-            $this->layoutView->render($this->isLoggedIn, $this->registerView, $this->dateTimeView);
+            $this->layoutView->render($_SESSION['isLoggedIn'], $this->registerView, $this->dateTimeView);
 
         } else {
 
-            $this->layoutView->render($this->isLoggedIn, $this->loginView, $this->dateTimeView);
+            $this->layoutView->render($_SESSION['isLoggedIn'], $this->loginView, $this->dateTimeView);
 
         }
     }

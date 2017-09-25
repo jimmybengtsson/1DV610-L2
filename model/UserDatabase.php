@@ -75,6 +75,8 @@ class UserDatabase
 
             $_SESSION['isLoggedIn'] = true;
             $_SESSION['registerPage'] = false;
+            $_SESSION['Message'] = 'Welcome';
+            $_SESSION['Username'] = '';
             mysqli_query($this->connectToDatabase, $sql);
 
             return header('Location: /');

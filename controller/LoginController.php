@@ -21,25 +21,35 @@ class LoginController
         $this->database= $userDatabase;
 
         if (isset($_POST['LoginView::Login'])) {
-            $this->userLogin();
+
+
+            if ($_SESSION['isLoggedIn'] == true) {
+
+                $_SESSION['Message'] = '';
+
+
+            } else {
+
+                return  $this->userLogin();
+            }
         }
 
         if (isset($_POST['LoginView::Logout'])) {
-            $this->userLogout();
+
+            if ($_SESSION['isLoggedIn'] == false) {
+
+                $_SESSION['Message'] = '';
+
+
+            } else {
+                $this->userLogout();
+            }
         }
     }
 
     public function userLogin() {
 
-        if ($_SESSION['isLoggedIn']) {
-
-            $_SESSION['Message'] = '';
-
-        } else {
-
             return $this->database->handleLogin();
-        }
-
     }
 
     public function userLogout() {
