@@ -15,7 +15,7 @@ class RegisterController
 {
     public function run(UserDatabase $userDatabase) {
         if (isset($_POST['RegisterView::RegisterForm'])) {
-            $userDatabase->addNewUser();
+            $userDatabase->addNewUser($_POST);
         }
     }
 

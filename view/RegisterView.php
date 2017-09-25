@@ -39,7 +39,7 @@ class RegisterView
     private function render($message)
     {
         return '
-			<form action="?register" method="post" enctype="multipart/form-data"> 
+			<form method="post"> 
 				<fieldset>
 					<legend>Register a new user - Write username and password</legend>
 					<p id="' . self::$messageId . '">' . $_SESSION['Message'] . '</p>
