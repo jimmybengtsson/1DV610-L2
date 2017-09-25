@@ -47,7 +47,7 @@ class RunApplication
     public function run()
     {
 
-        if (session_status() != PHP_SESSION_ACTIVE) {
+        if (!isset($_SESSION)) {
             $this->newSession->startSession();
         }
 
@@ -55,6 +55,8 @@ class RunApplication
         $this->loginController->run($this->userDatabase);
 
         $this->checkGoBackToIndex();
+
+        var_dump($_SESSION);
 
         if ($this->checkIfRegisterClick()) {
 

@@ -63,7 +63,9 @@ class Errors
             $_SESSION['Username'] = $userName;
             mysqli_query($connectToDatabase, $sql);
 
-            return header('Location: /');
+            header('Location: /');
+            exit;
+
 
         }
 
