@@ -16,7 +16,9 @@ class Session
 
         session_start();
 
-
+        if (!isset($_SESSION['Message'])) {
+            $_SESSION['Message'] = '';
+        }
 
         if (!isset($_SESSION['isLoggedIn'])) {
             $_SESSION['isLoggedIn'] = false;
