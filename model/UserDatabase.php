@@ -79,8 +79,6 @@ class UserDatabase
             $_SESSION['isLoggedIn'] = true;
             $_SESSION['Message'] = 'Welcome';
             $_SESSION['Username'] = '';
-
-            echo $_SESSION['isLoggedIn'];
         }
     }
 }
