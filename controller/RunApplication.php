@@ -56,8 +56,6 @@ class RunApplication
 
         $this->checkGoBackToIndex();
 
-        var_dump($_SESSION);
-
         if ($this->checkIfRegisterClick()) {
 
             $this->layoutView->render($_SESSION['isLoggedIn'], $this->registerView, $this->dateTimeView);
