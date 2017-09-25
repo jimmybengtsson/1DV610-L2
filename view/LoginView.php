@@ -76,7 +76,7 @@ class LoginView {
 			<form method="post" > 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
-					<p id="' . self::$messageId . '">' . $_SESSION['Message'] . '</p>
+					<p id="' . self::$messageId . '">' . $this->getMessage() . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
 					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->username . '" />
@@ -97,6 +97,15 @@ class LoginView {
 	private function getRequestUserName() {
 		//RETURN REQUEST VARIABLE: USERNAME
 	}
+
+	private function getMessage() {
+
+	    if(isset($_SESSION['registerMessage']) && strlen($_SESSION['registerMessage']) > 0) {
+	        return $_SESSION['registerMessage'];
+        } else {
+	        return $_SESSION['Message'];
+        }
+    }
 
 
 

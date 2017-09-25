@@ -59,7 +59,7 @@ class Errors
 
             $_SESSION['isLoggedIn'] = false;
             $_SESSION['registerPage'] = false;
-            $_SESSION['Message'] = 'Registered new user.';
+            $_SESSION['registerMessage'] = 'Registered new user.';
             $_SESSION['Username'] = $userName;
             mysqli_query($connectToDatabase, $sql);
 

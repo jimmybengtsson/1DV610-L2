@@ -65,6 +65,9 @@ class RunApplication
             $this->layoutView->render($_SESSION['isLoggedIn'], $this->loginView, $this->dateTimeView);
 
         }
+
+        // So the "Registered new user."-message doesn't repeat.
+        $_SESSION['registerMessage'] = '';
     }
 
     private function checkIfRegisterClick()
