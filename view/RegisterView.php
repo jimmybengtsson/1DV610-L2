@@ -39,10 +39,10 @@ class RegisterView
     private function render($message)
     {
         return '
-			<form method="post"> 
+			<form action="?register" method="post" enctype="multipart/form-data"> 
 				<fieldset>
 					<legend>Register a new user - Write username and password</legend>
-					<p id="' . self::$messageId . '">' . $message . '</p>
+					<p id="' . self::$messageId . '">' . $_SESSION['Message'] . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
 					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->username . '" />
