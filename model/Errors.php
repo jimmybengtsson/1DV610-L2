@@ -13,7 +13,53 @@ class Errors
 
     private $errorMessage = '';
 
-    public function checkRegisterForm() {
+    public function checkRegisterForm($userName, $password, $passwordRepeat, $connectToDatabase) {
+
+        $errorMessages = '';
+
+
+        if (strlen($this->checkUsernameLength($userName)) > 0) {
+
+            $errorMessages .= $this->checkUsernameLength($userName) . ' ';
+            $_SESSION['Username'] = $userName;
+        }
+        if (strlen($this->checkPasswordLength($password)) > 0) {
+
+            $errorMessages .= $this->checkPasswordLength($password) . ' ';
+
+            $_SESSION['Username'] = $userName;
+        }
+        if ($password != $passwordRepeat) {
+
+            $errorMessages .= 'Passwords do not match. ';
+            $_SESSION['Username'] = $userName;
+        }
+        if (strlen($this->checkIfUsernameExists($userName, $connectToDatabase)) > 0) {
+
+            $errorMessages .= $this->checkIfUsernameExists($userName, $connectToDatabase) . ' ';
+
+            $_SESSION['Username'] = $userName;
+        }
+
+        if (strlen($errorMessages) > 0) {
+
+            return $_SESSION['Message'] = $errorMessages;
+
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
+
+            $_SESSION['isLoggedIn'] = true;
+            $_SESSION['registerPage'] = false;
+            $_SESSION['Message'] = 'Welcome';
+            $_SESSION['Username'] = '';
+            mysqli_query($connectToDatabase, $sql);
+
+            return header('Location: /');
+
+        }
 
     }
 
