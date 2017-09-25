@@ -18,11 +18,20 @@ class RegisterView
     private static $cookieName = 'RegisterView::CookieName';
     private static $cookiePassword = 'RegisterView::CookiePassword';
     private static $messageId = 'RegisterView::Message';
+    private $username = '';
 
     public function response()
     {
 
         $message = '';
+
+        if (isset($_SESSION['Message'])) {
+            $message = $_SESSION['Message'];
+        }
+
+        if (isset($_SESSION['Username'])) {
+            $this->username = $_SESSION['Username'];
+        }
 
         return $this->render($message);
     }
@@ -36,7 +45,7 @@ class RegisterView
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->username . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />

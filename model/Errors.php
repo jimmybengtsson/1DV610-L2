@@ -80,4 +80,36 @@ class Errors
 
         return '';
     }
+
+    public function checkUsernameLength ($username) {
+
+        if (strlen($username) < 3) {
+            return 'Username has too few characters, at least 3 characters.';
+        }
+
+        return '';
+    }
+
+    public function checkPasswordLength ($password) {
+
+        if (strlen($password) < 6) {
+            return 'Password has too few characters, at least 6 characters.';
+        }
+
+        return '';
+    }
+
+    public function checkIfUsernameExists($username, $connect) {
+
+        $sql = "SELECT * FROM users WHERE BINARY user_uid='$username'";
+        $result = mysqli_query($connect, $sql);
+        $validateResult = mysqli_num_rows($result);
+
+        if ($validateResult > 0) {
+            return 'User exists, pick another username.';
+
+        } else {
+            return '';
+        }
+    }
 }

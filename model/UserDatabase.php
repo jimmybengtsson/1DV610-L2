@@ -41,17 +41,45 @@ class UserDatabase
 
         // TODO Check for errors
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $errors = new Errors();
 
-        $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
+        if ($password != $passwordRepeat) {
 
-        $_SESSION['isLoggedIn'] = true;
-        $_SESSION['registerPage'] = false;
-        mysqli_query($this->connectToDatabase, $sql);
+            $_SESSION['Message'] = 'Passwords do not match.';
+            $_SESSION['Username'] = $userName;
 
-        return header('Location: /');
+        } else if (strlen($errors->checkLoginUsername($userName)) > 0 && strlen($errors->checkLoginPassword($password)) > 0) {
 
+            $_SESSION['Message'] = 'Username has too few characters, at least 3 characters. Password has too few characters, at least 6 characters.';
 
+        } else if (strlen($errors->checkUsernameLength($userName)) > 0) {
+
+            $_SESSION['Message'] = $errors->checkUsernameLength($userName);
+            $_SESSION['Username'] = $userName;
+
+        } else if (strlen($errors->checkPasswordLength($password)) > 0) {
+
+            $_SESSION['Message'] = $errors->checkPasswordLength($password);
+            $_SESSION['Username'] = $userName;
+
+        } else if (strlen($errors->checkIfUsernameExists($userName, $this->connectToDatabase)) > 0) {
+
+            $_SESSION['Message'] = $errors->checkIfUsernameExists($userName, $this->connectToDatabase);
+            $_SESSION['Username'] = $userName;
+
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
+
+            $_SESSION['isLoggedIn'] = true;
+            $_SESSION['registerPage'] = false;
+            mysqli_query($this->connectToDatabase, $sql);
+
+            return header('Location: /');
+
+        }
     }
 
     public function handleLogin() {
