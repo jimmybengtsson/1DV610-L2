@@ -16,7 +16,13 @@ class Session
 
         session_start();
 
-        $_SESSION['Message'] = '';
+        if (!isset($_SESSION['Message'])) {
+            $_SESSION['Message'] = '';
+        }
+
+        if ($_SESSION['Message'] == 'Registered new user.') {
+            $_SESSION['Message'] = 'Registered new user.';
+        }
 
         if (!isset($_SESSION['isLoggedIn'])) {
             $_SESSION['isLoggedIn'] = false;
