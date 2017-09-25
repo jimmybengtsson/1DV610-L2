@@ -51,10 +51,10 @@ class Errors
 
             $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
 
-            $_SESSION['isLoggedIn'] = true;
+            $_SESSION['isLoggedIn'] = false;
             $_SESSION['registerPage'] = false;
-            $_SESSION['Message'] = 'Welcome';
-            $_SESSION['Username'] = '';
+            $_SESSION['Message'] = 'Registered new user.';
+            $_SESSION['Username'] = $userName;
             mysqli_query($connectToDatabase, $sql);
 
             return header('Location: /');

@@ -33,7 +33,7 @@ class UserDatabase
         $this->connectToDatabase = mysqli_connect($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
     }
 
-    public function addNewUser($registerPost) {
+    public function addNewUser() {
 
         $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']);
         $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
