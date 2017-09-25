@@ -13,6 +13,7 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $keep = 'LoginView::KeepMeLoggedIn';
 	private static $messageId = 'LoginView::Message';
+	private $username = '';
 
 	private $loginController;
 
@@ -35,6 +36,10 @@ class LoginView {
 
 	    if (isset($_SESSION['Message'])) {
 	        $message = $_SESSION['Message'];
+        }
+
+        if (isset($_SESSION['Username'])) {
+            $this->username = $_SESSION['Username'];
         }
 
         if ($isLoggedIn) {
@@ -74,7 +79,7 @@ class LoginView {
 					<p id="' . self::$messageId . '">' . $message . '</p>
 					
 					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="" />
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" value="' . $this->username . '" />
 
 					<label for="' . self::$password . '">Password :</label>
 					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />

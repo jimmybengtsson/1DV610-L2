@@ -61,11 +61,6 @@ class UserDatabase
 
         $errors = new Errors();
 
-        // TODO Check for errors
-
-        $checkUsername = $errors->checkLoginUsername($username);
-        $checkPassword = $errors->checkLoginPassword($password);
-
         if (strlen($errors->isUserNameSet($username)) > 0) {
 
             $_SESSION['Message'] = $errors->isUserNameSet($username);
@@ -73,6 +68,7 @@ class UserDatabase
         } elseif (strlen($errors->isPasswordSet($password)) > 0) {
 
             $_SESSION['Message'] = $errors->isPasswordSet($password);
+            $_SESSION['Username'] = $username;
 
         } elseif (strlen($errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase)) > 0) {
 
@@ -82,6 +78,9 @@ class UserDatabase
 
             $_SESSION['isLoggedIn'] = true;
             $_SESSION['Message'] = 'Welcome';
+            $_SESSION['Username'] = '';
+
+            echo $_SESSION['isLoggedIn'];
         }
     }
 }

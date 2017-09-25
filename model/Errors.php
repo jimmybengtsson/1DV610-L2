@@ -54,7 +54,7 @@ class Errors
     public function compareUidAndPwdWithDatabase($username, $password, $connect)
     {
 
-        $sql = "SELECT * FROM users WHERE user_uid='$username'";
+        $sql = "SELECT * FROM users WHERE BINARY user_uid='$username'";
         $result = mysqli_query($connect, $sql);
         $validateResult = mysqli_num_rows($result);
 
@@ -68,6 +68,8 @@ class Errors
                 $validatePassword = password_verify($password, $row['user_password']);
 
                 if ($validatePassword == false) {
+
+                    $_SESSION['Username'] = $username;
 
                     return 'Wrong name or password';
 

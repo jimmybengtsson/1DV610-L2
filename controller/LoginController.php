@@ -31,9 +31,14 @@ class LoginController
 
     public function userLogin() {
 
+        if ($_SESSION['isLoggedIn']) {
 
+            $_SESSION['Message'] = '';
 
-        $this->database->handleLogin();
+        } else {
+
+            return $this->database->handleLogin();
+        }
 
     }
 
