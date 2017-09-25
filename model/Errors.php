@@ -40,6 +40,12 @@ class Errors
 
             $_SESSION['Username'] = $userName;
         }
+        if ($userName != strip_tags($userName)) {
+
+            $errorMessages .= 'Username contains invalid characters.';
+
+            $_SESSION['Username'] = strip_tags($userName);
+        }
 
         if (strlen($errorMessages) > 0) {
 
