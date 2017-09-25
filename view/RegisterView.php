@@ -11,7 +11,7 @@ namespace View;
 class RegisterView
 {
 
-    private static $register = 'RegisterView::RegisterForm';
+    private static $register = 'RegisterView::Register';
     private static $name = 'RegisterView::UserName';
     private static $password = 'RegisterView::Password';
     private static $passwordRepeat = 'RegisterView::PasswordRepeat';
