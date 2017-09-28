@@ -21,8 +21,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
 $runApplication = new \Controller\RunApplication();
-$newSession = new \Model\Session();
 
-$newSession->startSession();
+
 $runApplication->run();
 

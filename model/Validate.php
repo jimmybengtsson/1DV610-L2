@@ -55,16 +55,16 @@ class Validate
     {
         if (strlen($this->isUserNameSet($username)) > 0) {
 
-            $_SESSION['Message'] = $this->isUserNameSet($username);
+            return $this->isUserNameSet($username);
 
         } else if (strlen($this->isPasswordSet($password)) > 0) {
 
-            $_SESSION['Message'] = $this->isPasswordSet($password);
             $_SESSION['Username'] = $username;
+            return $this->isPasswordSet($password);
 
         } else if (strlen($this->compareUidAndPwdWithDatabase($username, $password, $connectToDatabase)) > 0) {
 
-            $_SESSION['Message'] = $this->compareUidAndPwdWithDatabase($username, $password, $connectToDatabase);
+            return $this->compareUidAndPwdWithDatabase($username, $password, $connectToDatabase);
 
         } else {
 
