@@ -22,7 +22,6 @@ class RegisterView
 
     public function response()
     {
-
         $message = '';
 
         if (isset($_SESSION['Message'])) {
@@ -36,7 +35,7 @@ class RegisterView
         return $this->render($message);
     }
 
-    private function render($message)
+    private function render()
     {
         return '
 			<form action="?register" method="post" enctype="multipart/form-data"> 

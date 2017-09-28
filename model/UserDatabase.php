@@ -9,9 +9,6 @@
 namespace Model;
 
 use \Config\DatabaseConfig as DatabaseConfig;
-use View\DateTimeView;
-use View\LayoutView;
-use View\LoginView;
 
 class UserDatabase
 {
@@ -21,8 +18,9 @@ class UserDatabase
     private $dbName ;
     private $connectToDatabase;
 
-    public function __construct() {
 
+    public function __construct()
+    {
         $config = new DatabaseConfig();
 
         $this->dbServerName = $config->dbServerName;
@@ -33,21 +31,19 @@ class UserDatabase
         $this->connectToDatabase = mysqli_connect($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
     }
 
-    public function addNewUser() {
-
+    public function addNewUser()
+    {
         $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']);
         $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
         $passwordRepeat = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::PasswordRepeat']);
-
-        // TODO Check for errors
 
         $errors = new Errors();
 
         $errors->checkRegisterForm($userName, $password, $passwordRepeat, $this->connectToDatabase);
     }
 
-    public function handleLogin() {
-
+    public function handleLogin()
+    {
         $username = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']);
         $password = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::Password']);
 
@@ -57,12 +53,12 @@ class UserDatabase
 
             $_SESSION['Message'] = $errors->isUserNameSet($username);
 
-        } elseif (strlen($errors->isPasswordSet($password)) > 0) {
+        } else if (strlen($errors->isPasswordSet($password)) > 0) {
 
             $_SESSION['Message'] = $errors->isPasswordSet($password);
             $_SESSION['Username'] = $username;
 
-        } elseif (strlen($errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase)) > 0) {
+        } else if (strlen($errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase)) > 0) {
 
             $_SESSION['Message'] = $errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase);
 

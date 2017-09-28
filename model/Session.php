@@ -11,9 +11,8 @@ namespace Model;
 
 class Session
 {
-
-    public function startSession() {
-
+    public function startSession()
+    {
         session_start();
 
         $_SESSION['Message'] = '';

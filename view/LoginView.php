@@ -4,7 +4,8 @@ namespace View;
 
 use Controller\LoginController;
 
-class LoginView {
+class LoginView
+{
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
@@ -30,8 +31,8 @@ class LoginView {
 	 *
 	 * @return  void BUT writes to standard output and cookies!
 	 */
-	public function response($isLoggedIn) {
-
+	public function response($isLoggedIn)
+    {
 	    $message = '';
 
 	    if (isset($_SESSION['Message'])) {
@@ -54,10 +55,8 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLogoutButtonHTML($message) {
-
-
-
+	private function generateLogoutButtonHTML()
+    {
 		return '
 			<form  method="post" >
 				<p id="' . self::$messageId . '">' . $_SESSION['Message'] .'</p>
@@ -71,7 +70,8 @@ class LoginView {
 	* @param $message, String output message
 	* @return  void, BUT writes to standard output!
 	*/
-	private function generateLoginFormHTML($message) {
+	private function generateLoginFormHTML()
+    {
 		return '
 			<form method="post" > 
 				<fieldset>
@@ -93,16 +93,14 @@ class LoginView {
 		';
 	}
 
-	//CREATE GET-FUNCTIONS TO FETCH REQUEST VARIABLES
-	private function getRequestUserName() {
-		//RETURN REQUEST VARIABLE: USERNAME
-	}
+	private function getMessage()
+    {
+        if(isset($_SESSION['registerMessage']) && strlen($_SESSION['registerMessage']) > 0) {
 
-	private function getMessage() {
-
-	    if(isset($_SESSION['registerMessage']) && strlen($_SESSION['registerMessage']) > 0) {
 	        return $_SESSION['registerMessage'];
+
         } else {
+
 	        return $_SESSION['Message'];
         }
     }
