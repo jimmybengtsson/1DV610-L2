@@ -17,16 +17,20 @@ class UserDatabase
     private $dbPassword;
     private $dbName ;
     private $connectToDatabase;
+    private $validate;
+
+    private $config;
 
 
     public function __construct()
     {
-        $config = new DatabaseConfig();
+        $this->config = new DatabaseConfig();
+        $this->validate = new Validate();
 
-        $this->dbServerName = $config->dbServerName;
-        $this->dbUserName = $config->dbUserName;
-        $this->dbPassword = $config->dbPassword;
-        $this->dbName = $config->dbName;
+        $this->dbServerName = $this->config->dbServerName;
+        $this->dbUserName = $this->config->dbUserName;
+        $this->dbPassword = $this->config->dbPassword;
+        $this->dbName = $this->config->dbName;
 
         $this->connectToDatabase = mysqli_connect($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
     }
@@ -37,9 +41,25 @@ class UserDatabase
         $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
         $passwordRepeat = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::PasswordRepeat']);
 
-        $errors = new Errors();
+        if (strlen($this->validate->registerForm($userName, $password, $passwordRepeat, $this->connectToDatabase)) > 0) {
 
-        $errors->checkRegisterForm($userName, $password, $passwordRepeat, $this->connectToDatabase);
+            return $_SESSION['Message'] = $this->validate->registerForm($userName, $password, $passwordRepeat, $this->connectToDatabase);
+
+        } else {
+
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
+
+            $_SESSION['isLoggedIn'] = false;
+            $_SESSION['registerPage'] = false;
+            $_SESSION['registerMessage'] = 'Registered new user.';
+            $_SESSION['Username'] = $userName;
+            mysqli_query($this->connectToDatabase, $sql);
+
+            header('Location: /');
+            exit;
+        }
     }
 
     public function handleLogin()
@@ -47,20 +67,9 @@ class UserDatabase
         $username = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']);
         $password = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::Password']);
 
-        $errors = new Errors();
+        if (strlen($this->validate->loginForm($username, $password,  $this->connectToDatabase)) > 0) {
 
-        if (strlen($errors->isUserNameSet($username)) > 0) {
-
-            $_SESSION['Message'] = $errors->isUserNameSet($username);
-
-        } else if (strlen($errors->isPasswordSet($password)) > 0) {
-
-            $_SESSION['Message'] = $errors->isPasswordSet($password);
-            $_SESSION['Username'] = $username;
-
-        } else if (strlen($errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase)) > 0) {
-
-            $_SESSION['Message'] = $errors->compareUidAndPwdWithDatabase($username, $password, $this->connectToDatabase);
+            $_SESSION['Message'] = $this->validate->loginForm($username, $password,  $this->connectToDatabase);
 
         } else {
 

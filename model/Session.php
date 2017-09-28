@@ -15,10 +15,29 @@ class Session
     {
         session_start();
 
-        $_SESSION['Message'] = '';
+        if (isset($_SESSION['isSessionSet'])) {
 
-        if (!isset($_SESSION['isLoggedIn'])) {
-            $_SESSION['isLoggedIn'] = false;
+            if ($_SESSION['browserInfo'] === $_SERVER['HTTP_USER_AGENT']) {
+
+                return;
+
+            } else {
+
+                $_SESSION['isLoggedIn'] = false;
+            }
+
+        } else {
+
+            $_SESSION['isSessionSet'] = true;
+
+            $_SESSION['Message'] = '';
+
+            $_SESSION['browserInfo'] = $_SERVER['HTTP_USER_AGENT'];
+
+            if (!isset($_SESSION['isLoggedIn'])) {
+                $_SESSION['isLoggedIn'] = false;
+            }
+
         }
 
 

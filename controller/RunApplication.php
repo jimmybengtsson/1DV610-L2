@@ -12,7 +12,6 @@ use \View\LoginView as LoginView;
 use \View\DateTimeView as DateTimeView;
 use \View\LayoutView as LayoutView;
 use \View\RegisterView as RegisterView;
-use \Model\Session as Session;
 use \Model\UserDatabase as UserDatabase;
 use \Controller\RegisterController as RegisterController;
 use \Controller\LoginController as LoginController;
@@ -23,11 +22,9 @@ class RunApplication
     private $dateTimeView;
     private $layoutView;
     private $registerView;
-    private $newSession;
     private $userDatabase;
     private $registerController;
     private $loginController;
-    private $isLoggedIn;
 
 
     public function __construct()
@@ -36,7 +33,6 @@ class RunApplication
         $this->dateTimeView = new DateTimeView();
         $this->layoutView = new LayoutView();
         $this->registerView = new RegisterView();
-        $this->newSession = new Session();
         $this->registerController = new RegisterController();
         $this->userDatabase = new UserDatabase();
         $this->loginController = new LoginController();
@@ -46,11 +42,6 @@ class RunApplication
 
     public function run()
     {
-
-        if (!isset($_SESSION)) {
-            $this->newSession->startSession();
-        }
-
         $this->registerController->run($this->userDatabase);
         $this->loginController->run($this->userDatabase);
 

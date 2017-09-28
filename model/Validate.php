@@ -8,10 +8,10 @@
 
 namespace Model;
 
-class Errors
+class Validate
 {
 
-    public function checkRegisterForm($userName, $password, $passwordRepeat, $connectToDatabase)
+    public function registerForm($userName, $password, $passwordRepeat, $connectToDatabase)
     {
         $errorMessages = '';
 
@@ -48,40 +48,31 @@ class Errors
             $_SESSION['Username'] = strip_tags($userName);
         }
 
-        if (strlen($errorMessages) > 0) {
+        return $errorMessages;
+    }
 
-            return $_SESSION['Message'] = $errorMessages;
+    public function loginForm($username, $password, $connectToDatabase)
+    {
+        if (strlen($this->isUserNameSet($username)) > 0) {
+
+            $_SESSION['Message'] = $this->isUserNameSet($username);
+
+        } else if (strlen($this->isPasswordSet($password)) > 0) {
+
+            $_SESSION['Message'] = $this->isPasswordSet($password);
+            $_SESSION['Username'] = $username;
+
+        } else if (strlen($this->compareUidAndPwdWithDatabase($username, $password, $connectToDatabase)) > 0) {
+
+            $_SESSION['Message'] = $this->compareUidAndPwdWithDatabase($username, $password, $connectToDatabase);
 
         } else {
 
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-            $sql = "INSERT INTO users (user_uid, user_password) VALUES ('$userName', '$hashedPassword');";
-
-            $_SESSION['isLoggedIn'] = false;
-            $_SESSION['registerPage'] = false;
-            $_SESSION['registerMessage'] = 'Registered new user.';
-            $_SESSION['Username'] = $userName;
-            mysqli_query($connectToDatabase, $sql);
-
-            header('Location: /');
-            exit;
+            return '';
         }
-
     }
 
-    public function checkLoginUsername($username)
-    {
-        return $this->isUserNameSet($username);
-    }
-
-    public function checkLoginPassword($password)
-    {
-
-        return $this->isPasswordSet($password);
-    }
-
-    public function isUserNameSet($username)
+    private function isUserNameSet($username)
     {
         if (strlen($username) == 0) {
 
@@ -93,7 +84,7 @@ class Errors
         }
     }
 
-    public function isPasswordSet($password)
+    private function isPasswordSet($password)
     {
         if (strlen($password) == 0) {
 
@@ -106,7 +97,7 @@ class Errors
 
     }
 
-    public function compareUidAndPwdWithDatabase($username, $password, $connect)
+    private function compareUidAndPwdWithDatabase($username, $password, $connect)
     {
         $sql = "SELECT * FROM users WHERE BINARY user_uid='$username'";
         $result = mysqli_query($connect, $sql);
@@ -134,7 +125,7 @@ class Errors
         return '';
     }
 
-    public function checkUsernameLength ($username)
+    private function checkUsernameLength ($username)
     {
         if (strlen($username) < 3) {
 
@@ -144,7 +135,7 @@ class Errors
         return '';
     }
 
-    public function checkPasswordLength ($password)
+    private function checkPasswordLength ($password)
     {
         if (strlen($password) < 6) {
 
@@ -154,7 +145,7 @@ class Errors
         return '';
     }
 
-    public function checkIfUsernameExists($username, $connect)
+    private function checkIfUsernameExists($username, $connect)
     {
         $sql = "SELECT * FROM users WHERE BINARY user_uid='$username'";
         $result = mysqli_query($connect, $sql);

@@ -15,4 +15,5 @@ class DatabaseConfig
     public $dbUserName = 'root';
     public $dbPassword = 'root';
     public $dbName = 'users';
+
 }
