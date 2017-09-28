@@ -10,16 +10,20 @@ class LayoutView
           <html>
             <head>
               <meta charset="utf-8">
+              <link rel="stylesheet" type="text/css" href="/style/Styles.css">
               <title>Login Example</title>
             </head>
             <body>
-              <h1>Assignment 2</h1>
-              ' . $this->renderIsLoggedIn() . '
-              
-              <div class="container">
-                  ' . $loginView->response($isLoggedIn) . '
+            
+              <div class="outerContainer">
+                  <h1>Assignment 2</h1>
+                  ' . $this->renderIsLoggedIn() . '
                   
-                  ' . $dateTimeView->show() . '
+                  <div class="container">
+                      ' . $loginView->response($isLoggedIn) . '
+                      
+                      ' . $dateTimeView->show() . '
+                  </div>
               </div>
              </body>
           </html>
