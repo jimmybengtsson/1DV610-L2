@@ -20,5 +20,5 @@ ini_set('display_errors', 'On');
 $runApplication = new \Controller\RunApplication();
 
 
-$runApplication->run('');
+$runApplication->run();
 

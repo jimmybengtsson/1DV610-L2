@@ -13,12 +13,12 @@ use Model\UserDatabase;
 
 class LoginController
 {
-
     private $database;
 
-    public function run(UserDatabase $userDatabase) {
 
-        $this->database= $userDatabase;
+    public function run(UserDatabase $userDatabase)
+    {
+        $this->database = $userDatabase;
 
         if (isset($_POST['LoginView::Login'])) {
 
@@ -42,17 +42,18 @@ class LoginController
 
 
             } else {
+
                 $this->userLogout();
             }
         }
     }
 
-    public function userLogin() {
+    private function userLogin() {
 
             return $this->database->handleLogin();
     }
 
-    public function userLogout() {
+    private function userLogout() {
 
             $_SESSION['isLoggedIn'] = false;
             $_SESSION['Message'] = 'Bye bye!';

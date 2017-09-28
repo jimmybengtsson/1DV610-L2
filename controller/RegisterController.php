@@ -13,8 +13,10 @@ use Model\UserDatabase;
 
 class RegisterController
 {
-    public function run(UserDatabase $userDatabase) {
+    public function run(UserDatabase $userDatabase)
+    {
         if (isset($_POST['RegisterView::Register'])) {
+
             $userDatabase->addNewUser();
         }
     }

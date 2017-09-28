@@ -2,34 +2,32 @@
 
 namespace View;
 
-class LayoutView {
-
-    private static $register = 'Register';
-    private static $backToIndex = 'BackToIndex';
-
-  public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView) {
-    echo '<!DOCTYPE html>
-      <html>
-        <head>
-          <meta charset="utf-8">
-          <title>Login Example</title>
-        </head>
-        <body>
-          <h1>Assignment 2</h1>
-          ' . $this->renderIsLoggedIn() . '
-          
-          <div class="container">
-              ' . $loginView->response($isLoggedIn) . '
+class LayoutView
+{
+    public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView)
+    {
+        echo '<!DOCTYPE html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Login Example</title>
+            </head>
+            <body>
+              <h1>Assignment 2</h1>
+              ' . $this->renderIsLoggedIn() . '
               
-              ' . $dateTimeView->show() . '
-          </div>
-         </body>
-      </html>
-    ';
-  }
+              <div class="container">
+                  ' . $loginView->response($isLoggedIn) . '
+                  
+                  ' . $dateTimeView->show() . '
+              </div>
+             </body>
+          </html>
+        ';
+      }
 
-  private function renderIsLoggedIn() {
-
+  private function renderIsLoggedIn()
+  {
     if ($_SESSION['isLoggedIn']) {
       return '<h2>Logged in</h2>';
     }
@@ -38,7 +36,8 @@ class LayoutView {
     }
   }
 
-  private function registerOrBackButton() {
+  private function registerOrBackButton()
+  {
       if ($_SESSION['registerPage']) {
           return $this->generateBackToIndexButton();
       }
@@ -46,11 +45,13 @@ class LayoutView {
       return $this->generateRegisterButton();
   }
 
-  private function generateRegisterButton() {
+  private function generateRegisterButton()
+  {
       return '<a href="?register">Register a new user</a>';
   }
 
-  private function generateBackToIndexButton() {
+  private function generateBackToIndexButton()
+  {
       return '<a href="?">Back to login</a>';
   }
 }

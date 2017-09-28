@@ -13,14 +13,12 @@ use \View\DateTimeView as DateTimeView;
 use \View\LayoutView as LayoutView;
 use \View\RegisterView as RegisterView;
 use \Model\Session as Session;
-use \Model\Errors as Errors;
 use \Model\UserDatabase as UserDatabase;
 use \Controller\RegisterController as RegisterController;
 use \Controller\LoginController as LoginController;
 
 class RunApplication
 {
-
     private $loginView;
     private $dateTimeView;
     private $layoutView;
@@ -30,6 +28,7 @@ class RunApplication
     private $registerController;
     private $loginController;
     private $isLoggedIn;
+
 
     public function __construct()
     {
@@ -44,6 +43,7 @@ class RunApplication
 
     }
 
+
     public function run()
     {
 
@@ -54,7 +54,7 @@ class RunApplication
         $this->registerController->run($this->userDatabase);
         $this->loginController->run($this->userDatabase);
 
-        $this->checkGoBackToIndex();
+        $this->checkIfBackClick();
 
         if ($this->checkIfRegisterClick()) {
 
@@ -70,11 +70,11 @@ class RunApplication
         $_SESSION['registerMessage'] = '';
     }
 
+
     private function checkIfRegisterClick()
     {
 
-        if(isset($_GET['register']))
-        {
+        if(isset($_GET['register'])) {
             $_SESSION['registerPage'] = true;
             return true;
         }
@@ -83,21 +83,12 @@ class RunApplication
         return false;
     }
 
-    private function checkGoBackToIndex() {
+    private function checkIfBackClick()
+    {
+        if(isset($_GET[''])) {
 
-        if(isset($_GET['']))
-        {
             $_SESSION['registerPage'] = false;
             return false;
-        }
-    }
-
-    private function checkIfLoggedIn() {
-
-        if (isset($_SESSION['isLoggedIn']) && $_SESSION['isLoggedIn'] == true) {
-            $this->isLoggedIn = true;
-        } else {
-            $this->isLoggedIn = false;
         }
     }
 
