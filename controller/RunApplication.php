@@ -62,8 +62,9 @@ class RunApplication
 
         }
 
-        // So the "Registered new user."-message doesn't repeat.
+        // So messages doesn't repeat.
         $_SESSION['registerMessage'] = '';
+        $_SESSION['Message'] = '';
     }
 
 
