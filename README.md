@@ -1,6 +1,8 @@
 # 1DV610 L2
 Repository for 1DV610 assignment 2.
 
+81% complete in the automated tests without any implementation of the cookie-requirements (3)
+
 ### Installation:
 
 Make shure you have **MAMP/LAMP/WAMP** installed on your computer or server. 
