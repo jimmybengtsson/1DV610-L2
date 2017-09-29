@@ -1,5 +1,5 @@
 body {
-    background-image: url('BackgroundImage.jpeg');
+    background-image: url('BackgroundImage.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -11,7 +11,8 @@ body {
     margin-top: 150px;
     max-width: 800px;
     max-height: 800px;
-    background-color: rgba(226, 234, 236, 0.92);
+    min-height: 300px;
+    background-color: rgba(226, 234, 236, 0.96);
     padding: 10px;
     border-radius: 5px;
     text-align:center;
