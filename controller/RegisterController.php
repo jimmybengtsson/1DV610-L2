@@ -13,6 +13,12 @@ use Model\UserDatabase;
 
 class RegisterController
 {
+    /**
+     * Listen for click on the register link
+     *
+     * @param UserDatabase $userDatabase
+     */
+
     public function run(UserDatabase $userDatabase)
     {
         if (isset($_POST['RegisterView::Register'])) {

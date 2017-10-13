@@ -14,6 +14,12 @@ class ImageController
     private $targetDir = 'uploads/';
     private $validate;
 
+    /**
+     * Handle image upload
+     *
+     * @return string|void
+     */
+
     public function run()
     {
         $this->validate = new \Model\Validate();

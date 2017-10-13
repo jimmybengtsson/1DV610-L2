@@ -8,13 +8,18 @@
 
 namespace Controller;
 
-
 use Model\UserDatabase;
 
 class LoginController
 {
     private $database;
 
+    /**
+     * Handle user login and logout
+     *
+     * @param UserDatabase $userDatabase
+     * @return mixed
+     */
 
     public function run(UserDatabase $userDatabase)
     {

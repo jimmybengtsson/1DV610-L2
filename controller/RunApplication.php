@@ -48,6 +48,9 @@ class RunApplication
 
     }
 
+    /**
+     *  Starting the application
+     */
 
     public function run()
     {
@@ -78,6 +81,11 @@ class RunApplication
         $_SESSION['Message'] = '';
     }
 
+    /**
+     *  Check if user wants to navigate to register page
+     *
+     * @return bool
+     */
 
     private function checkIfRegisterClick()
     {
@@ -91,6 +99,12 @@ class RunApplication
         return false;
     }
 
+    /**
+     *  Check if user wants to navigate to front page
+     *
+     * @return bool
+     */
+
     private function checkIfBackClick()
     {
         if(isset($_GET[''])) {
@@ -99,6 +113,12 @@ class RunApplication
             return false;
         }
     }
+
+    /**
+     * Get all uploaded images and return them in a array
+     *
+     * @return array
+     */
 
     private function fetchImagesFromStorage()
     {

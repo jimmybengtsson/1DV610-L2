@@ -4,6 +4,12 @@ namespace View;
 
 class DateTimeView
 {
+    /**
+     * Check date and time
+     *
+     * @return string
+     */
+
     public function show()
     {
         $today = getdate();
@@ -13,6 +19,13 @@ class DateTimeView
 
 		return '<p>' . $timeString . '</p>';
 	}
+
+    /**
+     * Check end of day-date
+     *
+     * @param $monthDay
+     * @return string
+     */
 
     private function checkDayOfMonth($monthDay)
     {

@@ -19,6 +19,11 @@ class RegisterView
 
     private $username = '';
 
+    /**
+     * HTTP response for register
+     * @return string
+     */
+
     public function response()
     {
         $message = '';
@@ -33,6 +38,12 @@ class RegisterView
 
         return $this->render($message);
     }
+
+    /**
+     * Render register-view
+     *
+     * @return string
+     */
 
     private function render()
     {

@@ -20,8 +20,8 @@ require_once('view/ImageView.php');
 require_once('../.config/Config.php');
 
 //MAKE SURE ERRORS ARE SHOWN... MIGHT WANT TO TURN THIS OFF ON A PUBLIC SERVER
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'On');
 
 $runApplication = new \Controller\RunApplication();
 

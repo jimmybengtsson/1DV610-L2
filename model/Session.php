@@ -11,6 +11,10 @@ namespace Model;
 
 class Session
 {
+    /**
+     *  Handle session
+     */
+
     public function startSession()
     {
         session_start();

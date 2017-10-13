@@ -22,6 +22,12 @@ class ImageView
         $this->images = $images;
     }
 
+    /**
+     *  Render list of images and also a upload-form if signed in
+     *
+     * @return string
+     */
+
     public function render()
     {
 
@@ -51,6 +57,12 @@ class ImageView
         }
 
     }
+
+    /**
+     * Render all uploaded images
+     *
+     * @return string
+     */
 
     public function renderListOfImages()
     {

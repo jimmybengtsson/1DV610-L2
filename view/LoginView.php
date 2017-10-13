@@ -23,12 +23,12 @@ class LoginView
     }
 
     /**
-	 * Create HTTP response
-	 *
-	 * Should be called after a login attempt has been determined
-	 *
-	 * @return  void BUT writes to standard output and cookies!
-	 */
+     * Create HTTP response
+     *
+     * @param $isLoggedIn
+     * @return string
+     */
+
 	public function response($isLoggedIn)
     {
 	    $message = '';
@@ -48,11 +48,12 @@ class LoginView
         }
 	}
 
-	/**
-	* Generate HTML code on the output buffer for the logout button
-	* @param $message, String output message
-	* @return  void, BUT writes to standard output!
-	*/
+    /**
+     * Generate HTML code on the output buffer for the logout button
+     *
+     * @return string
+     */
+
 	private function generateLogoutButtonHTML()
     {
 		return '
@@ -63,11 +64,12 @@ class LoginView
 		';
 	}
 
-	/**
-	* Generate HTML code on the output buffer for the logout button
-	* @param $message, String output message
-	* @return  void, BUT writes to standard output!
-	*/
+    /**
+     * Generate HTML code on the output buffer for the logout button
+     *
+     * @return string
+     */
+
 	private function generateLoginFormHTML()
     {
 		return '
@@ -90,6 +92,12 @@ class LoginView
 			</form>
 		';
 	}
+
+    /**
+     * Render messages
+     *
+     * @return mixed
+     */
 
 	private function getMessage()
     {

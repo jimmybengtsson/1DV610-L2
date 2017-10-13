@@ -4,6 +4,15 @@ namespace View;
 
 class LayoutView
 {
+    /**
+     * Render the start-layout
+     *
+     * @param $isLoggedIn
+     * @param $loginView
+     * @param DateTimeView $dateTimeView
+     * @param ImageView $imageView
+     */
+
     public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView, ImageView $imageView)
     {
         echo '<!DOCTYPE html>
@@ -30,7 +39,13 @@ class LayoutView
              </body>
           </html>
         ';
-      }
+    }
+
+    /**
+     * Render if logged in or not
+     *
+     * @return string
+     */
 
   private function renderIsLoggedIn()
   {
@@ -41,6 +56,11 @@ class LayoutView
       return $this->registerOrBackButton() . '<h2>Not logged in</h2>';
     }
   }
+
+    /**
+     * Render register or goback-link
+     * @return string
+     */
 
   private function registerOrBackButton()
   {

@@ -11,6 +11,16 @@ namespace Model;
 class Validate
 {
 
+    /**
+     * Validate registration of a new user
+     *
+     * @param $userName
+     * @param $password
+     * @param $passwordRepeat
+     * @param $connectToDatabase
+     * @return string
+     */
+
     public function registerForm($userName, $password, $passwordRepeat, $connectToDatabase)
     {
         $errorMessages = '';
@@ -51,6 +61,15 @@ class Validate
         return $errorMessages;
     }
 
+    /**
+     * Validate users input when logging in
+     *
+     * @param $username
+     * @param $password
+     * @param $connectToDatabase
+     * @return string
+     */
+
     public function loginForm($username, $password, $connectToDatabase)
     {
         if (strlen($this->isUserNameSet($username)) > 0) {
@@ -72,6 +91,14 @@ class Validate
         }
     }
 
+    /**
+     * Validate image upload
+     *
+     * @param $targetFile
+     * @param $imageFileType
+     * @return string
+     */
+
     public function imageForm($targetFile, $imageFileType)
     {
         if (file_exists($targetFile)) {
@@ -90,6 +117,10 @@ class Validate
         }
 
     }
+
+    //
+    // Errors
+    //
 
     private function isUserNameSet($username)
     {

@@ -35,6 +35,12 @@ class UserDatabase
         $this->connectToDatabase = mysqli_connect($this->dbServerName, $this->dbUserName, $this->dbPassword, $this->dbName);
     }
 
+    /**
+     * Adding a new user to the database
+     *
+     * @return string
+     */
+
     public function addNewUser()
     {
         $user = new User(mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']),
@@ -64,6 +70,10 @@ class UserDatabase
             exit;
         }
     }
+
+    /**
+     *  Handle and validate if a user wants to sign in
+     */
 
     public function handleLogin()
     {

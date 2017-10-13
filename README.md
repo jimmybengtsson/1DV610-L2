@@ -13,7 +13,8 @@ Repository for 1DV610 assignment 2 and 3.
 ### L3
 
 For L3 I added a function to upload images when signed in. Uploaded images is placed in a folder named `uploads`.
-If the user is not signed in, only the list of images in the folder `/uploads/` is shown.
+If the user is not signed in, only the list of images in the folder `/uploads/` is shown. No images are shown when navigating to register-page.
+Have not added any functionality to delete the images you have uploaded!
 
 ##### Added use and test cases for L3:
 
