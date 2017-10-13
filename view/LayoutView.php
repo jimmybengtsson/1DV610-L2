@@ -4,7 +4,7 @@ namespace View;
 
 class LayoutView
 {
-    public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView)
+    public function render($isLoggedIn, $loginView, DateTimeView $dateTimeView, ImageView $imageView)
     {
         echo '<!DOCTYPE html>
           <html>
@@ -24,6 +24,7 @@ class LayoutView
                       
                       ' . $dateTimeView->show() . '
                   </div>
+                  <div>' . $imageView->render() . '</div>
               </div>
              </body>
           </html>

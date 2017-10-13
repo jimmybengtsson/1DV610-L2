@@ -12,4 +12,9 @@ namespace Controller;
 class ImageController
 {
 
+    public function run()
+    {
+
+    }
+
 }
