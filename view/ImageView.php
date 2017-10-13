@@ -81,7 +81,7 @@ class ImageView
 
     public function renderImage($image)
     {
-            return '<li><img src="../uploads/' . $image . '" alt="' . $image . '"></li><br>';
+            return '<li><img src="../uploads/' . $image . '" alt="' . $image . '"></li>';
     }
 
 }
