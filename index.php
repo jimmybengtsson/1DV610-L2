@@ -10,7 +10,6 @@ require_once('model/Session.php');
 require_once('model/User.php');
 require_once('model/UserDatabase.php');
 require_once('model/Validate.php');
-require_once('model/Image.php');
 
 require_once('view/LoginView.php');
 require_once('view/DateTimeView.php');

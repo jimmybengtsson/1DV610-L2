@@ -14,7 +14,6 @@ use \View\LayoutView as LayoutView;
 use \View\ImageView as ImageView;
 use \View\RegisterView as RegisterView;
 use \Model\Session as Session;
-use \Model\User as User;
 use \Model\UserDatabase as UserDatabase;
 use \Controller\RegisterController as RegisterController;
 use \Controller\LoginController as LoginController;

@@ -28,18 +28,25 @@ class ImageView
         if ($_SESSION['isLoggedIn']) {
 
             return '
+            <hr>
 			<form action="?upload" method="post" enctype="multipart/form-data">
                 Select image to upload:
                 <input type="file" name="' . self::$fileToUpload . '" id="' . self::$fileToUpload . '">
                 <input type="submit" value="Upload Image" name="' . self::$submitImageUpload . '">
             </form>
-            <ul class="imageContainer">' . $this->renderListOfImages() . '</ul>
+            <hr>
+            <br>
+            <div class="innerContainer">
+                <ul class="imageContainer">' . $this->renderListOfImages() . '</ul>
+            </div>
 		    ';
 
         } else {
 
             return '
-        <ul class="imageContainer">' . $this->renderListOfImages() . '</ul>
+            <div class="innerContainer">
+                <ul class="imageContainer">' . $this->renderListOfImages() . '</ul>
+            </div>
         ';
         }
 

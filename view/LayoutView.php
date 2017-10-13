@@ -18,11 +18,11 @@ class LayoutView
               <div class="outerContainer">
                   <h1>Assignment 2</h1>
                   ' . $this->renderIsLoggedIn() . '
-                  
+                  <br>
                   <div class="container">
                       ' . $loginView->response($isLoggedIn) . '
-                      
-                      <div>' . $imageView->render() . '</div>
+                      <br>
+                      ' . $imageView->render() . '
                       
                       ' . $dateTimeView->show() . '
                   </div>
