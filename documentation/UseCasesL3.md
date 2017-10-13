@@ -20,3 +20,8 @@ A user can upload an image. Ex. UC5
 ## Main scenario
  1. Starts when a user navigates to page.
  2. The system present a list of images stored in the folder `/uploads/`.
+
+## Alternate Scenarios
+ * 2a. Image could not be uploaded.
+   1. No images are shown if the folder with uploaded images is empty.
+ 
