@@ -37,8 +37,11 @@ class UserDatabase
 
     public function addNewUser()
     {
-        $userName = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']);
-        $password = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']);
+        $user = new User(mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::UserName']),
+            mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::Password']));
+
+        $userName = $user->name;
+        $password = $user->password;
         $passwordRepeat = mysqli_real_escape_string($this->connectToDatabase, $_POST['RegisterView::PasswordRepeat']);
 
         if (strlen($this->validate->registerForm($userName, $password, $passwordRepeat, $this->connectToDatabase)) > 0) {
@@ -64,8 +67,12 @@ class UserDatabase
 
     public function handleLogin()
     {
-        $username = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']);
-        $password = mysqli_escape_string($this->connectToDatabase, $_POST['LoginView::Password']);
+
+        $user = new User(mysqli_real_escape_string($this->connectToDatabase, $_POST['LoginView::UserName']),
+            mysqli_real_escape_string($this->connectToDatabase, $_POST['LoginView::Password']));
+
+        $username = $user->name;
+        $password = $user->password;
 
         if (strlen($this->validate->loginForm($username, $password,  $this->connectToDatabase)) > 0) {
 
