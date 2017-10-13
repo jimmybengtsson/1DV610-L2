@@ -14,6 +14,8 @@ User sign in and upload a valid image-file.
 #### Success
 ![After Input](images/5-1.png)
 
+#### Fail
+![After Input](images/5-1-fail.png)
 ***
 
 ## Test case 5.2, Upload a image with a name that already exists in the folder `/uploads/`. 

@@ -112,7 +112,8 @@ class Validate
         }
 
         if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-            && $imageFileType != "gif" ) {
+            && $imageFileType != "gif" && $imageFileType != "JPG" && $imageFileType != "PNG"
+            && $imageFileType != "JPEG" && $imageFileType != "GIF") {
             return 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.';
         }
 
