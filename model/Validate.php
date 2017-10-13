@@ -72,6 +72,25 @@ class Validate
         }
     }
 
+    public function imageForm($targetFile, $imageFileType)
+    {
+        if (file_exists($targetFile)) {
+
+            return 'Sorry, file already exists.';
+        }
+
+        if ($_FILES['ImageView::FileToUpload']['size'] > 2000000) {
+
+            return 'Sorry, your file is too large.';
+        }
+
+        if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif" ) {
+            return 'Sorry, only JPG, JPEG, PNG & GIF files are allowed.';
+        }
+
+    }
+
     private function isUserNameSet($username)
     {
         if (strlen($username) == 0) {

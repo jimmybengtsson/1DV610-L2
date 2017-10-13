@@ -56,7 +56,11 @@ class RunApplication
 
         $this->registerController->run($this->userDatabase);
         $this->loginController->run($this->userDatabase);
-        $this->imageController->run();
+
+        if ($_SESSION['isLoggedIn'])
+        {
+            $this->imageController->run();
+        }
 
         $this->checkIfBackClick();
 
