@@ -31,10 +31,12 @@ class ImageController
 
                 if (move_uploaded_file($_FILES['ImageView::FileToUpload']["tmp_name"], $targetFile)) {
 
-                    return $_SESSION['Message'] = "The file ". basename( $_FILES['ImageView::FileToUpload']["name"]). " has been uploaded.";
+                    $_SESSION['Message'] = "The file ". basename( $_FILES['ImageView::FileToUpload']["name"]). " has been uploaded.";
+                    return header('Location: /');
 
                 } else {
-                    return $_SESSION['Message'] = "Sorry, there was an error uploading your file.";
+                    $_SESSION['Message'] = "Sorry, there was an error uploading your file.";
+                    return header('Location: /');
                 }
             }
         }

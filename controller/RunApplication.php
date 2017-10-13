@@ -40,7 +40,7 @@ class RunApplication
         $this->dateTimeView = new DateTimeView();
         $this->layoutView = new LayoutView();
         $this->registerView = new RegisterView();
-        $this->imageView = new ImageView();
+        $this->imageView = new ImageView($this->fetchImagesFromStorage());
         $this->newSession = new Session();
         $this->registerController = new RegisterController();
         $this->userDatabase = new UserDatabase();
@@ -99,6 +99,19 @@ class RunApplication
             $_SESSION['registerPage'] = false;
             return false;
         }
+    }
+
+    private function fetchImagesFromStorage()
+    {
+        $targetDir = 'uploads/';
+        $files = array();
+        $fetchFromDir = opendir($targetDir);
+        while (false !== ($filename = readdir($fetchFromDir))) {
+            $files[] = $filename;
+        }
+
+        return preg_grep('/\.(jpg|jpeg|png|gif)(?:[\?\#].*)?$/i', $files);
+
     }
 
 }

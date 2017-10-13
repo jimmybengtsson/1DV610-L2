@@ -22,9 +22,10 @@ class LayoutView
                   <div class="container">
                       ' . $loginView->response($isLoggedIn) . '
                       
+                      <div>' . $imageView->render() . '</div>
+                      
                       ' . $dateTimeView->show() . '
                   </div>
-                  <div>' . $imageView->render() . '</div>
               </div>
              </body>
           </html>
