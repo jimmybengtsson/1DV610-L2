@@ -18,9 +18,9 @@ Have not added any functionality to delete the images you have uploaded!
 
 ##### Added use and test cases for L3:
 
-[Use Cases](/documentation/UseCasesL3.md)
+[Use Cases](/documents/UseCasesL3.md)
 
-[Test Cases](/documentation/TestCasesL3.md)
+[Test Cases](/documents/TestCasesL3.md)
 
 
 

@@ -8,12 +8,11 @@ User sign in and upload a valid image-file.
  * Press button "Upload Image".
  
 ### Output:
- * Feedback: "The file `(name of image)` has been uploaded." is shown
  * A updated list with the new uploaded image is shown.
  * If something went wrong, Feedback: "Sorry, there was an error uploading your file." is shown.
  
 #### Success
-// Todo add a image
+![After Input](images/5-1.png)
 
 ***
 
@@ -30,7 +29,7 @@ User sign in and upload a image-file with a name that already exists.
  * Feedback: "Sorry, file already exists." is shown
  * A form for upload a image is shown
  
-// Todo add a image
+![After Input](images/5-2.png)
 
 ***
 
@@ -47,11 +46,11 @@ User sign in and upload a unvalid image-file.
  * Feedback: "Sorry, only JPG, JPEG, PNG & GIF files are allowed." is shown
  * A form for upload a image is shown
  
-// Todo add a image
+![After Input](images/5-3.png)
 
 ***
 
-## Test case 5.4, Upload a file that is over 2 Mb in size
+## Test case 5.4, Upload a image-file that is over 2 Mb in size
 User sign in and upload a image over 2 Mb in size
 
 ### Input:
@@ -64,7 +63,7 @@ User sign in and upload a image over 2 Mb in size
  * Feedback: "Sorry, your file is too large." is shown
  * A form for upload a image is shown
  
-// Todo add a image
+![After Input](images/5-4.png)
 
 ***
 
@@ -79,7 +78,7 @@ All uploaded images are shown as a list when navigating to page.
  * A list with available images is shown
  * Todays date and time is shown in correct format.
  
-// Todo add a image
+![After Input](images/6-1.png)
 ***
 
 ## Test case 6.2, List images when signed in
@@ -92,7 +91,7 @@ All uploaded images are shown as a list when navigating to page.
 ### Output:
  * A list with available images is shown
  
-// Todo add a image
+![After Input](images/6-2.png)
 ***
 
 ## Test case 6.3, Images are not shown when on register page
@@ -106,5 +105,5 @@ No uploaded images are shown when navigating to register page.
  * A form for Registration of a new user is shown
  * No images are shown
  
-// Todo add a image
+![After Input](images/6-3.png)
 ***

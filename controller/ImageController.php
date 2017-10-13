@@ -16,8 +16,6 @@ class ImageController
 
     /**
      * Handle image upload
-     *
-     * @return string|void
      */
 
     public function run()
@@ -37,12 +35,12 @@ class ImageController
 
                 if (move_uploaded_file($_FILES['ImageView::FileToUpload']["tmp_name"], $targetFile)) {
 
-                    $_SESSION['Message'] = "The file ". basename( $_FILES['ImageView::FileToUpload']["name"]). " has been uploaded.";
-                    return header('Location: /');
+                    header('Location: /');
+                    // This doesn't work because I use header before and have no cookies
+                    return $_SESSION['Message'] = "The file ". basename( $_FILES['ImageView::FileToUpload']["name"]). " has been uploaded.";
 
                 } else {
-                    $_SESSION['Message'] = "Sorry, there was an error uploading your file.";
-                    return header('Location: /');
+                     return $_SESSION['Message'] = "Sorry, there was an error uploading your file.";
                 }
             }
         }
