@@ -17,9 +17,9 @@ If the user is not signed in, only the list of images in the folder `/uploads/` 
 
 ##### Added use and test cases for L3:
 
-[Use Cases](https://github.com/jimmybengtsson/1DV610-L2/wiki/Use-Cases-for-L3)
+[Use Cases](/documentation/UseCasesL3.md)
 
-[Test Cases](https://github.com/jimmybengtsson/1DV610-L2/wiki/Test-cases-for-L3)
+[Test Cases](/documentation/TestCasesL3.md)
 
 
 

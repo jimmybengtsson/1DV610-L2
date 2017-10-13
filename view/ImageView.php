@@ -47,12 +47,17 @@ class ImageView
 
     public function renderListOfImages()
     {
-        $imagesString = '';
-        foreach ($this->images as $image)
-        {
-            $imagesString .= $this->renderImage($image);
+        if (!$_SESSION['registerPage']) {
+
+            $imagesString = '';
+            foreach ($this->images as $image) {
+                $imagesString .= $this->renderImage($image);
+            }
+            return $imagesString;
+
+        } else {
+            return '';
         }
-        return $imagesString;
     }
 
     public function renderImage($image)
