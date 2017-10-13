@@ -1,9 +1,29 @@
-# 1DV610 L2
-Repository for 1DV610 assignment 2.
+# 1DV610 L2 and L3
+Repository for 1DV610 assignment 2 and 3.
 
+### L2
 81% complete in the automated tests without any implementation of the cookie-requirements (3)
 
-### Installation:
+##### L2 use and test cases:
+
+[Use Cases](https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/UseCases.md)
+
+[Test Cases](https://github.com/dntoll/1dv610/blob/master/assignments/A2_resources/TestCases.md)
+
+### L3
+
+For L3 I added a function to upload images when signed in. Uploaded images is placed in a folder named `uploads`.
+If the user is not signed in, only the list of images in the folder `/uploads/` is shown.
+
+##### Added use and test cases for L3:
+
+[Use Cases](https://github.com/jimmybengtsson/1DV610-L2/wiki/Use-Cases-for-L3)
+
+[Test Cases](https://github.com/jimmybengtsson/1DV610-L2/wiki/Test-cases-for-L3)
+
+
+
+# Installation:
 
 Make shure you have **MAMP/LAMP/WAMP** installed on your computer or server. 
 
